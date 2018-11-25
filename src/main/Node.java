@@ -1,6 +1,6 @@
 package main;
 
-//The node for the display list
+//The node for the Queue	
 public class Node { 
     NodeData data;
     Node nextNode; 

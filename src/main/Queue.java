@@ -254,7 +254,7 @@ public class Queue {
 		}
 	}
 	
-	// Destroying List
+//	 Destroying List
 	public void destroy() {
 		if(!checkIfEmpty()) {
 			while(!checkIfEmpty()) {
