@@ -106,7 +106,7 @@ public class Queue {
 		String first = "", second = "", third = "", fourth = "";
 
 		while(temp != null) {
-			oneID = temp.getData().gid().length();
+			oneID = temp.getData().getid().length();
 
 			System.out.print((ranCount==0?"|":""));
 			first += (ranCount==0?"|":"");
@@ -127,8 +127,8 @@ public class Queue {
 		ranCount = 0; System.out.println();;
 
 		while(temp != null) {
-			System.out.print((ranCount==0?"|":"")+" "+temp.getData().gid()+" |");
-			second += (ranCount==0?"|":"")+" " +temp.getData().gid()+" |";
+			System.out.print((ranCount==0?"|":"")+" "+temp.getData().getid()+" |");
+			second += (ranCount==0?"|":"")+" " +temp.getData().getid()+" |";
 			
 			ranCount = 1;
 
@@ -139,7 +139,7 @@ public class Queue {
 		ranCount = 0; System.out.println();
 
 		while(temp != null) {
-			oneID = temp.getData().gid().length();
+			oneID = temp.getData().getid().length();
 
 			System.out.print((ranCount==0?"|":""));
 			third += (ranCount==0?"|":"");
@@ -161,10 +161,10 @@ public class Queue {
 
 		while(temp != null) {
 			if(ranCount == 0) {
-				if(temp.getData().gat() <= 9) {
+				if(temp.getData().getarrTime() <= 9) {
 					oneDigit = 1;
 				}
-				else if(temp.getData().gat() >= 100) {
+				else if(temp.getData().getarrTime() >= 100) {
 					oneDigit = 3;
 				}
 				else {
@@ -172,10 +172,10 @@ public class Queue {
 				}
 			}
 			else {
-				if(temp.getData().gat() <= 9) {
+				if(temp.getData().getarrTime() <= 9) {
 					oneDigit = 1;
 				}
-				else if(temp.getData().gat() >= 100) {
+				else if(temp.getData().getarrTime() >= 100) {
 					oneDigit = 3;
 				}
 				else {
@@ -183,40 +183,40 @@ public class Queue {
 				}
 			}
 
-			if(temp.getData().gid().length() == 1) {
+			if(temp.getData().getid().length() == 1) {
 				oneID = 1;
 			}
-			else if(temp.getData().gid().length() == 2) {
+			else if(temp.getData().getid().length() == 2) {
 				oneID = 2;
 			}
 			
 			if(ranCount == 0) {
-				System.out.print(temp.getData().gat());
-				fourth += temp.getData().gat();
+				System.out.print(temp.getData().getarrTime());
+				fourth += temp.getData().getarrTime();
 			}
 			if(oneID == 1 && oneDigit == 1) {
-				System.out.print("   "+temp.getData().gbt());
-				fourth += "   "+temp.getData().gbt();
+				System.out.print("   "+temp.getData().getburTime());
+				fourth += "   "+temp.getData().getburTime();
 			}
 			else if(oneID == 2 && oneDigit == 2) {
-				System.out.print("   "+temp.getData().gbt());
-				fourth += "   "+temp.getData().gbt();
+				System.out.print("   "+temp.getData().getburTime());
+				fourth += "   "+temp.getData().getburTime();
 			}
 			else if(oneID == 1 && oneDigit == 2) {
-				System.out.print("  "+temp.getData().gbt());
-				fourth += "  "+temp.getData().gbt();
+				System.out.print("  "+temp.getData().getburTime());
+				fourth += "  "+temp.getData().getburTime();
 			}
 			else if(oneID == 2 && oneDigit == 1) {
-				System.out.print("    "+temp.getData().gbt());
-				fourth += "    "+temp.getData().gbt();
+				System.out.print("    "+temp.getData().getburTime());
+				fourth += "    "+temp.getData().getburTime();
 			}
 			else if(oneID == 1 && oneDigit == 3) {
-				System.out.print(" "+temp.getData().gbt());
-				fourth += " "+temp.getData().gbt();
+				System.out.print(" "+temp.getData().getburTime());
+				fourth += " "+temp.getData().getburTime();
 			}
 			else if(oneID == 2 && oneDigit == 3) {
-				System.out.print("  "+temp.getData().gbt());
-				fourth += "  "+temp.getData().gbt();
+				System.out.print("  "+temp.getData().getburTime());
+				fourth += "  "+temp.getData().getburTime();
 			}
 
 			ranCount = 1;

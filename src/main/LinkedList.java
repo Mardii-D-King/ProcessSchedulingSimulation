@@ -1,22 +1,26 @@
 package main;
 
+//Mardon Bailey-130097
+//Rojah Lewis-1601909
+//Mikhalia Willaims -
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class LinkedList  {	// The main linked list used to execute the scheduling algorithms
+public class LinkedList  {	//linked list used to execute the scheduling algorithms
     private int count, bt;
     private linkedListNode headNode;
     private linkedListNode tailNode;
     
-    public LinkedList() { // Default Constructor to create the linked list
+    public LinkedList() { //linked list
         this.headNode = this.tailNode = null;
         this.count = bt = 0;
     }
 	
-	public boolean delete(String processID) { // Used to delete a process from the list by process ID
+	public boolean delete(String processID) { // Delete process from list using PID
 		linkedListNode current, prevlinkedListNode, node;
 		int counter = 0;
 		
@@ -27,7 +31,8 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
 		prevlinkedListNode = this.headNode;
 		
 		if(!this.isEmpty()) {
-			if(this.headNode.getData().getpid().equals(processID)) { // If the process to be deleted is the one at the head of the list
+			//If the process to be deleted is at the front of the list
+			if(this.headNode.getData().getpid().equals(processID)) { 
 				node = this.headNode;
 
 				if(this.headNode.getNextNode() == null) {
@@ -41,7 +46,8 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
 				this.count--;
 				removed = true;
 			}
-			else if(this.tailNode.getData().getpid().equals(processID)) { // If the process to be deleted is the one at the tail of the list
+			//If the process to be deleted is at the end of the list
+			else if(this.tailNode.getData().getpid().equals(processID)) { 
 				node = this.headNode;
 
 				while(node.getData().getpid() != this.tailNode.getData().getpid()) {
@@ -56,7 +62,8 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
 				removed = true;
 			}
 			else {
-				while(current.getNextNode() != null) { // If the process to be deleted is somewhere in the middle of the list
+				//If the process to be deleted is somewhere in the middle of the list
+				while(current.getNextNode() != null) { 
 					counter++;
 					node = current;
 					current = current.getNextNode();
@@ -83,7 +90,7 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
 		return removed;
 	}
 	
-	public void storeDeletedprocessManifest(processManifest node) { // Used the deleted process to the list
+	public void storeDeletedprocessManifest(processManifest node) {
 		FileWriter file = null;
 		
 		try {
@@ -111,8 +118,8 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
 		saveToFile();
 	}
     
-    @SuppressWarnings("unused")
-	public void insertAtBack(processManifest data) { // Used to insert a node to the back of the list
+    //insert at back
+	public void insertAtBack(processManifest data) { 
         linkedListNode node = new linkedListNode(data, null);
         
         if(node != null) {
@@ -138,7 +145,8 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
     	return this.count;
     }
     
-    public void sort() { // Used to sort the list. This sorting method is called Selection Sort
+    public void sort() { 
+    	//Selection sort
     	linkedListNode node = this.headNode, nextlinkedListNode = null;
     	
     	boolean somethingChanged = false;
@@ -183,7 +191,8 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
     	}
     }
     
-    public void insertByArrivalTime(processManifest data) { // Used to insert the nodes at the correct positions in the linkedlist by arrival times
+    //insert nodes base on arrival time
+    public void insertByArrivalTime(processManifest data) { 
     	if(isEmpty()) {
             insertAtBack(data);
         }
@@ -203,7 +212,8 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
         }
     }
     
-    public processManifest getheadNode() { // Get the data from the head of the linked list
+     // Get the data from the head of the linked list
+    public processManifest getheadNode() {
         processManifest data = null;
         
         if(this.headNode != null) {
@@ -212,7 +222,8 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
         return data;
     }
     
-    public processManifest gettailNode() { // Get the data from the tail of the linked list
+    // Get the data from the tail of the linked list
+    public processManifest gettailNode() { 
         processManifest data = null;
         
         if(this.tailNode != null) {
@@ -225,8 +236,8 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
     	return this.bt;
     }
     
-    @SuppressWarnings("unused")
-	public void insertAtFront(processManifest data) { // Used to insert data at the back of the linked list
+    // insert at front
+	public void insertAtFront(processManifest data) { 
         linkedListNode node = new linkedListNode(data, null);
         
         if(node != null) {
@@ -245,8 +256,9 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
             System.out.println("error inserting");
         }
     }
-     
-    public void saveToFile() { // Used to append all the data from the linked list to the file
+	
+     // add data to file
+    public void saveToFile() { 
     	linkedListNode node = this.headNode;
     	FileWriter file = null;
 		
@@ -286,7 +298,8 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
         }
     }
     
-    public void search(String processID) { // Used to search for a node
+    // search for a node
+    public void search(String processID) { 
     	linkedListNode node = this.headNode;
     	boolean found = false;
     	
@@ -306,7 +319,7 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
     	}
     }
     
-	@SuppressWarnings("unused")
+
 	public void destroy() {
 		linkedListNode node;
 		
@@ -320,8 +333,9 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
 		}
 	}
     
-    @SuppressWarnings("unused")
-	public void insertAtMiddle(processManifest data) { // used to insert a node somewhere in the middle of the list
+  
+ // insert in the middle
+	public void insertAtMiddle(processManifest data) { 
     	linkedListNode previouslinkedListNode, nextlinkedListNode, node = new linkedListNode(data, null);
 		int nodeSize;
 
@@ -357,8 +371,9 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
 		}
 	}
    
-	public boolean delete(String processID, boolean status) { // Used to delete a node and display the deleted node. It's the same as the previous delete method but with a boolean to determine if the deleted
-		linkedListNode current, prevlinkedListNode, node; 	// Node must be shown or not
+//	boolean fucntion to delete a node and display deleetd node 
+	public boolean delete(String processID, boolean status) { 
+		linkedListNode current, prevlinkedListNode, node; 
 		
 		int counter = 0;
 		boolean removed = false;
@@ -469,9 +484,10 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
 		
 		return removed;
 	}
-	 
-    public void nonPreEmp(int pLevel, Queue dList, turnAroundTime turnAroundTime, int bt, String eID) { // Used to schedule the processes in the linked list
-    	processManifest data; 								// using the non-preemptive priority scheduling algorithm
+	
+	// Used to schedule the processes in the linked list using the non-preemptive priority scheduling algorithm
+    public void nonPreEmp(int pLevel, Queue dList, turnAroundTime turnAroundTime, int bt, String eID) { 
+    	processManifest data; 								
     	NodeData data1 = new NodeData();
  		processManifest turnAroundTimeData = new processManifest();
  		
@@ -484,10 +500,10 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
  			
  			eID = data.getpid();
  			
- 			data1.sid(data.getpid());
- 			data1.sat(bt);
+ 			data1.setid(data.getpid());
+ 			data1.setarrTime(bt);
             bt += data.getbt();
-            data1.sbt(bt);
+            data1.setburTime(bt);
              
             dList.insertAtBack(data1);
             
@@ -504,9 +520,8 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
  		}
     }
     
-    @SuppressWarnings("rawtypes") 
 
-    // Used to allocate processes in memory using preemptive priority scheduling algorithm	
+    // Used to scheduling processes in memory using preemptive priority scheduling algorithm	
 	public void preEmptivePriority(HashMap<String, Integer> map, processManifest pcb, int level, int arrivalTime, int burstTime) {
         linkedListNode temp;
         processManifest data, data1;
@@ -577,8 +592,9 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
 			}
 		}
 	}
-    
-    public void calculateTotal() { // Used to calculate the total integers in the list
+	
+    // Used to calculate the total integers in the list
+    public void calculateTotal() { 
     	linkedListNode node = headNode;
     	int arrivalTime = 0, bt = 0;
     	
@@ -602,7 +618,8 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
     	}
     }
     
-    public processManifest highestPriority(int bt, int pLevel) { // Get the pcb with the highest priority
+    // Get the pcb with the highest priority
+    public processManifest highestPriority(int bt, int pLevel) { 
 		processManifest data = new processManifest();
 		        
 		linkedListNode node = headNode;
@@ -613,9 +630,9 @@ public class LinkedList  {	// The main linked list used to execute the schedulin
 				break;
 			} else if(node.getData().getpid().equals(this.headNode.getData().getpid())) {
 				data = node.getData();
-			} else if((pLevel == 1) && (node.getData().getPriority() < data.getPriority())) { // 1 means the lowest priority means highest priority
+			} else if((pLevel == 1) && (node.getData().getPriority() < data.getPriority())) { // 1 means the lowest priority
 				data = node.getData();
-			} else if((pLevel == 2) && (node.getData().getPriority() > data.getPriority())) { // 2 means the highest priority means highest priority
+			} else if((pLevel == 2) && (node.getData().getPriority() > data.getPriority())) { // 2 means the highest priority
 				data = node.getData();
 			}
 			

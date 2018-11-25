@@ -1,37 +1,37 @@
 package main;
 
-public class NodeData { // The data portion for the display node
+//Node data
+public class NodeData { 
     private String id;
-    private int at, bt;
+    private int arrivalTime;
+    int burstTime;
     
-    public NodeData() { // Default Constructor
+    public NodeData() {
         this.id = "";
-        this.at = this.bt = 0;
+        this.arrivalTime = this.burstTime = 0;
     }
     
-    // Mutators
-    public void sid(String id) {
+    public void setid(String id) {
         this.id = id;
     }
     
-    public void sat(int at) {
-        this.at = at;
-    }
-    
-    public void sbt(int bt) {
-        this.bt = bt;
-    }
-    
-    // Accessors
-    public String gid() {
+    public String getid() {
         return this.id;
     }
     
-    public int gat() {
-        return this.at;
+    public void setarrTime(int at) {
+        this.arrivalTime = at;
     }
     
-    public int gbt() {
-        return this.bt;
+    public int getarrTime() {
+        return this.arrivalTime;
+    }
+    
+    public void setburTime(int bt) {
+        this.burstTime = bt;
+    }
+    
+    public int getburTime() {
+        return this.burstTime;
     }
 }
