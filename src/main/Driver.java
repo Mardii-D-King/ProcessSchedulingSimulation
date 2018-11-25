@@ -46,14 +46,14 @@ public class Driver {
 		linkedListAccessControl sema = new linkedListAccessControl(true);
 		
 		// This list is used to allocate the processes in RAM
-		MainLinkedList mainLinkedList1 = new MainLinkedList();
+		LinkedList mainLinkedList1 = new LinkedList();
 		// This list is used to execute the tasks in the different threads
-		MainLinkedList mainLinkedList2 = new MainLinkedList(); 
-		MainLinkedList mainLinkedList3 = new MainLinkedList(); // This list is used to execute the processes using pre-emptive priority
+		LinkedList mainLinkedList2 = new LinkedList(); 
+		LinkedList mainLinkedList3 = new LinkedList(); // This list is used to execute the processes using pre-emptive priority
 		
 		turnAroundTime turnAroundTime = new turnAroundTime();
 		
-		DisplayList dList = new DisplayList();
+		Queue dList = new Queue();
 		
 		ArrayList<processManifest> actions = new ArrayList<>();
 		
@@ -187,5 +187,6 @@ public class Driver {
 		}
 		
 		return description;
+		
 	}
 }

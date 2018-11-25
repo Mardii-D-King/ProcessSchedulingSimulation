@@ -1,10 +1,10 @@
 package main;
 
-public class DisplayListNodeData { // The data portion for the display node
+public class NodeData { // The data portion for the display node
     private String id;
     private int at, bt;
     
-    public DisplayListNodeData() { // Default Constructor
+    public NodeData() { // Default Constructor
         this.id = "";
         this.at = this.bt = 0;
     }

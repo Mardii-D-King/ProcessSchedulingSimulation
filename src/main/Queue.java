@@ -4,19 +4,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 //This Linkedlist is used to store and draw the diagram for the processes at the end of the program
-public class DisplayList { 
+public class Queue { 
 
-	private DisplayListNode Head, Tail; 
+	private Node Head, Tail; 
 	
-	public DisplayList() {
+	public Queue() {
 		Head = null;
 		Tail = null;
 	}
 
 	//Insert At Back of Linked List
 	@SuppressWarnings("unused")
-	public void insertAtBack(DisplayListNodeData Data) { 
-		DisplayListNode temp = new DisplayListNode(Data, null);
+	public void insertAtBack(NodeData Data) { 
+		Node temp = new Node(Data, null);
 
 		if (temp != null) {
 			if (checkIfEmpty()) {
@@ -41,8 +41,8 @@ public class DisplayList {
 		return false;
 	}
 
-	public void deleteNode(DisplayListNode newNode) { // Used to delete a node from the linkedlist.
-		DisplayListNode current, prevNode, temp;
+	public void deleteNode(Node newNode) { // Used to delete a node from the linkedlist.
+		Node current, prevNode, temp;
 		int counter = 0;
 
 		current = Head;
@@ -98,7 +98,7 @@ public class DisplayList {
 
 	// Displaying List
 	public void display() { // This is used to create the driagram for all the nodes at the end of the execution of the program
-		DisplayListNode temp = Head;
+		Node temp = Head;
 		int ranCount = 0, oneDigit = 0;
 		long oneID = 0;
 		
@@ -259,7 +259,7 @@ public class DisplayList {
 		if(!checkIfEmpty()) {
 			while(!checkIfEmpty()) {
 				@SuppressWarnings("unused")
-				DisplayListNode temp = Head;
+				Node temp = Head;
 				Head = Head.getNextNode();
 				temp = null;
 			}

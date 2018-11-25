@@ -1,7 +1,7 @@
 package main;
 
 public class Threading implements Runnable { // Thread used to execute the processes
-	private MainLinkedList mainLinkedList;
+	private LinkedList mainLinkedList;
 	private linkedListAccessControl accessControl;
 	private processManifest pcb;
 	
@@ -19,7 +19,7 @@ public class Threading implements Runnable { // Thread used to execute the proce
 		System.out.println("Thread was ended --");
 	}
 	
-	public Threading(MainLinkedList mainLinkedList, linkedListAccessControl accessControl, processManifest pcb) { // Constructor to create the thread
+	public Threading(LinkedList mainLinkedList, linkedListAccessControl accessControl, processManifest pcb) { // Constructor to create the thread
 		this.accessControl = accessControl;
 		this.mainLinkedList = mainLinkedList;
 		this.pcb = pcb;

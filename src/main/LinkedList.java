@@ -6,12 +6,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class MainLinkedList  {	// The main linked list used to execute the scheduling algorithms
+public class LinkedList  {	// The main linked list used to execute the scheduling algorithms
     private int count, bt;
     private linkedListNode headNode;
     private linkedListNode tailNode;
     
-    public MainLinkedList() { // Default Constructor to create the linked list
+    public LinkedList() { // Default Constructor to create the linked list
         this.headNode = this.tailNode = null;
         this.count = bt = 0;
     }
@@ -470,9 +470,9 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
 		return removed;
 	}
 	 
-    public void nonPreEmp(int pLevel, DisplayList dList, turnAroundTime turnAroundTime, int bt, String eID) { // Used to schedule the processes in the linked list
+    public void nonPreEmp(int pLevel, Queue dList, turnAroundTime turnAroundTime, int bt, String eID) { // Used to schedule the processes in the linked list
     	processManifest data; 								// using the non-preemptive priority scheduling algorithm
-    	DisplayListNodeData data1 = new DisplayListNodeData();
+    	NodeData data1 = new NodeData();
  		processManifest turnAroundTimeData = new processManifest();
  		
  		if(!isEmpty()) { // IF the list is empty
