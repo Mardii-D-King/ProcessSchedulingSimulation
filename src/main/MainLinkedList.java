@@ -8,8 +8,8 @@ import java.util.Map;
 
 public class MainLinkedList  {	// The main linked list used to execute the scheduling algorithms
     private int count, bt;
-    private MainLinkedListNode headNode;
-    private MainLinkedListNode tailNode;
+    private linkedListNode headNode;
+    private linkedListNode tailNode;
     
     public MainLinkedList() { // Default Constructor to create the linked list
         this.headNode = this.tailNode = null;
@@ -17,14 +17,14 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
     }
 	
 	public boolean delete(String processID) { // Used to delete a process from the list by process ID
-		MainLinkedListNode current, prevMainLinkedListNode, node;
+		linkedListNode current, prevlinkedListNode, node;
 		int counter = 0;
 		
 		boolean removed = false;
 
 		current = this.headNode;
 		
-		prevMainLinkedListNode = this.headNode;
+		prevlinkedListNode = this.headNode;
 		
 		if(!this.isEmpty()) {
 			if(this.headNode.getData().getpid().equals(processID)) { // If the process to be deleted is the one at the head of the list
@@ -45,12 +45,12 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
 				node = this.headNode;
 
 				while(node.getData().getpid() != this.tailNode.getData().getpid()) {
-					prevMainLinkedListNode = node;
+					prevlinkedListNode = node;
 					node = node.getNextNode();
 				}
 				
-				prevMainLinkedListNode.setNextNode(null);
-				this.tailNode = prevMainLinkedListNode;
+				prevlinkedListNode.setNextNode(null);
+				this.tailNode = prevlinkedListNode;
 				this.count--;
 				node = null;
 				removed = true;
@@ -62,7 +62,7 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
 					current = current.getNextNode();
 
 					if(node.getData().getpid().equals(processID)) {
-						prevMainLinkedListNode.setNextNode(current);
+						prevlinkedListNode.setNextNode(current);
 						node = null;
 						this.count--;
 						removed = true;
@@ -71,7 +71,7 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
 					}
 					if(counter <= 1) { }
 					else {
-						prevMainLinkedListNode = prevMainLinkedListNode.getNextNode();
+						prevlinkedListNode = prevlinkedListNode.getNextNode();
 					}
 				}
 			}
@@ -83,7 +83,7 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
 		return removed;
 	}
 	
-	public void storeDeletedProcessControlBlock(ProcessControlBlock node) { // Used the deleted process to the list
+	public void storeDeletedprocessManifest(processManifest node) { // Used the deleted process to the list
 		FileWriter file = null;
 		
 		try {
@@ -112,8 +112,8 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
 	}
     
     @SuppressWarnings("unused")
-	public void insertAtBack(ProcessControlBlock data) { // Used to insert a node to the back of the list
-        MainLinkedListNode node = new MainLinkedListNode(data, null);
+	public void insertAtBack(processManifest data) { // Used to insert a node to the back of the list
+        linkedListNode node = new linkedListNode(data, null);
         
         if(node != null) {
             if(isEmpty()) {
@@ -139,7 +139,7 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
     }
     
     public void sort() { // Used to sort the list. This sorting method is called Selection Sort
-    	MainLinkedListNode node = this.headNode, nextMainLinkedListNode = null;
+    	linkedListNode node = this.headNode, nextlinkedListNode = null;
     	
     	boolean somethingChanged = false;
     	
@@ -147,18 +147,18 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
     		System.out.println("\nSorting the linked list\nThis is the current list:\n");
     		display();
     		while(node != null) {
-        		nextMainLinkedListNode = node.getNextNode();
+        		nextlinkedListNode = node.getNextNode();
         		
-        		if(nextMainLinkedListNode != null) {
-        			while(nextMainLinkedListNode != null) {
-        				if(nextMainLinkedListNode.getData().getat() <= node.getData().getat()) {
-                			ProcessControlBlock nodeData = nextMainLinkedListNode.getData();        			
-                			nextMainLinkedListNode.setData(node.getData());
+        		if(nextlinkedListNode != null) {
+        			while(nextlinkedListNode != null) {
+        				if(nextlinkedListNode.getData().getat() <= node.getData().getat()) {
+                			processManifest nodeData = nextlinkedListNode.getData();        			
+                			nextlinkedListNode.setData(node.getData());
                 			node.setData(nodeData);
                 			somethingChanged = true;
                 		}
         				
-        				nextMainLinkedListNode = nextMainLinkedListNode.getNextNode();
+        				nextlinkedListNode = nextlinkedListNode.getNextNode();
         			}
         		}
         		else {
@@ -183,7 +183,7 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
     	}
     }
     
-    public void insertByArrivalTime(ProcessControlBlock data) { // Used to insert the nodes at the correct positions in the linkedlist by arrival times
+    public void insertByArrivalTime(processManifest data) { // Used to insert the nodes at the correct positions in the linkedlist by arrival times
     	if(isEmpty()) {
             insertAtBack(data);
         }
@@ -203,8 +203,8 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
         }
     }
     
-    public ProcessControlBlock getheadNode() { // Get the data from the head of the linked list
-        ProcessControlBlock data = null;
+    public processManifest getheadNode() { // Get the data from the head of the linked list
+        processManifest data = null;
         
         if(this.headNode != null) {
             data = this.headNode.getData();
@@ -212,8 +212,8 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
         return data;
     }
     
-    public ProcessControlBlock gettailNode() { // Get the data from the tail of the linked list
-        ProcessControlBlock data = null;
+    public processManifest gettailNode() { // Get the data from the tail of the linked list
+        processManifest data = null;
         
         if(this.tailNode != null) {
             data = this.tailNode.getData();
@@ -226,8 +226,8 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
     }
     
     @SuppressWarnings("unused")
-	public void insertAtFront(ProcessControlBlock data) { // Used to insert data at the back of the linked list
-        MainLinkedListNode node = new MainLinkedListNode(data, null);
+	public void insertAtFront(processManifest data) { // Used to insert data at the back of the linked list
+        linkedListNode node = new linkedListNode(data, null);
         
         if(node != null) {
             if(isEmpty()) {
@@ -247,7 +247,7 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
     }
      
     public void saveToFile() { // Used to append all the data from the linked list to the file
-    	MainLinkedListNode node = this.headNode;
+    	linkedListNode node = this.headNode;
     	FileWriter file = null;
 		
 		try {
@@ -287,7 +287,7 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
     }
     
     public void search(String processID) { // Used to search for a node
-    	MainLinkedListNode node = this.headNode;
+    	linkedListNode node = this.headNode;
     	boolean found = false;
     	
     	System.out.println("\nSearching for ID: "+processID);
@@ -308,7 +308,7 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
     
 	@SuppressWarnings("unused")
 	public void destroy() {
-		MainLinkedListNode node;
+		linkedListNode node;
 		
 		if(!isEmpty()) {
 			while(!isEmpty()) {
@@ -321,30 +321,30 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
 	}
     
     @SuppressWarnings("unused")
-	public void insertAtMiddle(ProcessControlBlock data) { // used to insert a node somewhere in the middle of the list
-    	MainLinkedListNode previousMainLinkedListNode, nextMainLinkedListNode, node = new MainLinkedListNode(data, null);
+	public void insertAtMiddle(processManifest data) { // used to insert a node somewhere in the middle of the list
+    	linkedListNode previouslinkedListNode, nextlinkedListNode, node = new linkedListNode(data, null);
 		int nodeSize;
 
-		previousMainLinkedListNode = headNode;
+		previouslinkedListNode = headNode;
 		
-		nextMainLinkedListNode = headNode;
+		nextlinkedListNode = headNode;
 		
 		if(node != null) {
-			while(previousMainLinkedListNode != null) {
-				nextMainLinkedListNode = previousMainLinkedListNode.getNextNode();
+			while(previouslinkedListNode != null) {
+				nextlinkedListNode = previouslinkedListNode.getNextNode();
 
-				if(nextMainLinkedListNode != null) {
-					nodeSize = nextMainLinkedListNode.getData().getat();
+				if(nextlinkedListNode != null) {
+					nodeSize = nextlinkedListNode.getData().getat();
 					
 					if(data.getat() <= nodeSize) {
-						previousMainLinkedListNode.setNextNode(node);
-						node.setNextNode(nextMainLinkedListNode);
+						previouslinkedListNode.setNextNode(node);
+						node.setNextNode(nextlinkedListNode);
 						this.count++;
 						
 						break;
 					}
 					
-					previousMainLinkedListNode = previousMainLinkedListNode.getNextNode();
+					previouslinkedListNode = previouslinkedListNode.getNextNode();
 				}
 				
 				else {
@@ -358,14 +358,14 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
 	}
    
 	public boolean delete(String processID, boolean status) { // Used to delete a node and display the deleted node. It's the same as the previous delete method but with a boolean to determine if the deleted
-		MainLinkedListNode current, prevMainLinkedListNode, node; 	// Node must be shown or not
+		linkedListNode current, prevlinkedListNode, node; 	// Node must be shown or not
 		
 		int counter = 0;
 		boolean removed = false;
 
 		current = this.headNode;
-		prevMainLinkedListNode = this.headNode;
-		ProcessControlBlock pcb = new ProcessControlBlock();
+		prevlinkedListNode = this.headNode;
+		processManifest pcb = new processManifest();
 		
 		if(!this.isEmpty()) {
 			if(this.headNode.getData().getpid().equals(processID)) {
@@ -403,12 +403,12 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
 				node = this.headNode;
 
 				while(node.getData().getpid() != this.tailNode.getData().getpid()) {
-					prevMainLinkedListNode = node;
+					prevlinkedListNode = node;
 					node = node.getNextNode();
 				}
 				
-				prevMainLinkedListNode.setNextNode(null);
-				this.tailNode = prevMainLinkedListNode;
+				prevlinkedListNode.setNextNode(null);
+				this.tailNode = prevlinkedListNode;
 				this.count--;
 				
 				pcb = node.getData();
@@ -430,7 +430,7 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
 					current = current.getNextNode();
 
 					if(node.getData().getpid().equals(processID)) {
-						prevMainLinkedListNode.setNextNode(current);
+						prevlinkedListNode.setNextNode(current);
 						
 						pcb = node.getData();
 						if(status) {
@@ -449,7 +449,7 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
 						
 					{}
 					else {
-						prevMainLinkedListNode = prevMainLinkedListNode.getNextNode();
+						prevlinkedListNode = prevlinkedListNode.getNextNode();
 					}
 				}
 			}
@@ -461,7 +461,7 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
 		if(removed) {
 			System.out.println("\nDisplaying Linked List:");
 			display();
-			storeDeletedProcessControlBlock(pcb);
+			storeDeletedprocessManifest(pcb);
 		}
 		else {
 			System.out.println("No process was removed");
@@ -470,10 +470,10 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
 		return removed;
 	}
 	 
-    public void nonPreEmp(int pLevel, DisplayList dList, TurnAroundTimeLinkedList turnAroundTime, int bt, String eID) { // Used to schedule the processes in the linked list
-    	ProcessControlBlock data; 								// using the non-preemptive priority scheduling algorithm
+    public void nonPreEmp(int pLevel, DisplayList dList, turnAroundTime turnAroundTime, int bt, String eID) { // Used to schedule the processes in the linked list
+    	processManifest data; 								// using the non-preemptive priority scheduling algorithm
     	DisplayListNodeData data1 = new DisplayListNodeData();
- 		ProcessControlBlock turnAroundTimeData = new ProcessControlBlock();
+ 		processManifest turnAroundTimeData = new processManifest();
  		
  		if(!isEmpty()) { // IF the list is empty
  			data = this.highestPriority(bt, pLevel); // Get the node with the highest priority
@@ -507,9 +507,9 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
     @SuppressWarnings("rawtypes") 
 
     // Used to allocate processes in memory using preemptive priority scheduling algorithm	
-	public void preEmptivePriority(HashMap<String, Integer> map, ProcessControlBlock pcb, int level, int arrivalTime, int burstTime) {
-        MainLinkedListNode temp;
-        ProcessControlBlock data, data1;
+	public void preEmptivePriority(HashMap<String, Integer> map, processManifest pcb, int level, int arrivalTime, int burstTime) {
+        linkedListNode temp;
+        processManifest data, data1;
         int tempBurstTime = 0;
         int size = 0;
         
@@ -579,7 +579,7 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
 	}
     
     public void calculateTotal() { // Used to calculate the total integers in the list
-    	MainLinkedListNode node = headNode;
+    	linkedListNode node = headNode;
     	int arrivalTime = 0, bt = 0;
     	
     	while(node != null) {
@@ -593,7 +593,7 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
     }
     
     public void display() {
-    	MainLinkedListNode node = this.headNode;
+    	linkedListNode node = this.headNode;
     	
     	while(node != null) {
     		System.out.println("Process ID: "+node.getData().getpid()+"\tArrival Time: "+node.getData().getat()+"\tBurst Time: "+node.getData().getbt()+
@@ -602,10 +602,10 @@ public class MainLinkedList  {	// The main linked list used to execute the sched
     	}
     }
     
-    public ProcessControlBlock highestPriority(int bt, int pLevel) { // Get the pcb with the highest priority
-		ProcessControlBlock data = new ProcessControlBlock();
+    public processManifest highestPriority(int bt, int pLevel) { // Get the pcb with the highest priority
+		processManifest data = new processManifest();
 		        
-		MainLinkedListNode node = headNode;
+		linkedListNode node = headNode;
         data.setpid("");
 
 		while(node != null) {

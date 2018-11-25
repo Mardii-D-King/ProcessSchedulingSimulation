@@ -43,7 +43,7 @@ public class Driver {
 		String processID = "";
 		HashMap<String, Integer> sharedDictionary = new HashMap<String, Integer>();
 		sharedDictionary.put("Shared List Value", shared);
-		Semaphore sema = new Semaphore(true);
+		linkedListAccessControl sema = new linkedListAccessControl(true);
 		
 		// This list is used to allocate the processes in RAM
 		MainLinkedList mainLinkedList1 = new MainLinkedList();
@@ -51,11 +51,11 @@ public class Driver {
 		MainLinkedList mainLinkedList2 = new MainLinkedList(); 
 		MainLinkedList mainLinkedList3 = new MainLinkedList(); // This list is used to execute the processes using pre-emptive priority
 		
-		TurnAroundTimeLinkedList turnAroundTime = new TurnAroundTimeLinkedList();
+		turnAroundTime turnAroundTime = new turnAroundTime();
 		
 		DisplayList dList = new DisplayList();
 		
-		ArrayList<ProcessControlBlock> actions = new ArrayList<>();
+		ArrayList<processManifest> actions = new ArrayList<>();
 		
 		System.out.println("Please enter the total amount of processes would you like to use. Thanks");
 		totatprocesses = scan.nextInt();
@@ -85,26 +85,26 @@ public class Driver {
 				}
 				else { 
 					if(40 <= sharedDictionary.get("Shared List Value").intValue()) { // If the current process can allocated
-						mainLinkedList1.insertByArrivalTime(new ProcessControlBlock(processID, arrivalTime, burstTime));
+						mainLinkedList1.insertByArrivalTime(new processManifest(processID, arrivalTime, burstTime));
 						sharedDictionary.replace("Shared List Value", sharedDictionary.get("Shared List Value").intValue() - 40); // Minus 40 from the total RAM that is available
 						sharedDictionary.put(processID, 40);
 					}
 					else { // If the current process can't be allocated
 						System.out.println("\nShared Integer List is Full. Please wait. \nProcess ID: "+processID+" is waiting to be processed");
-						ProcessControlBlock processCB = new ProcessControlBlock(processID, arrivalTime, burstTime);
+						processManifest processCB = new processManifest(processID, arrivalTime, burstTime);
 						total = total - sharedDictionary.get("Shared List Value").intValue();
 						mainLinkedList1.preEmptivePriority(sharedDictionary, processCB, 1, 1, burstTime);
 					}
 					
-					ProcessControlBlock processControlBlock = new ProcessControlBlock(processID, arrivalTime, burstTime); // Creates the PCB
-					processControlBlock.setBaseAddress(mainLinkedList3.getCount());
+					processManifest processManifest = new processManifest(processID, arrivalTime, burstTime); // Creates the PCB
+					processManifest.setBaseAddress(mainLinkedList3.getCount());
 					
-					System.out.println("The task for: "+processID+" is: "+descriptiveDescription(processControlBlock.getTask())); // Displays the task for the pCB
+					System.out.println("The task for: "+processID+" is: "+descriptiveDescription(processManifest.getTask())); // Displays the task for the pCB
 					
-					Thread thread = new Thread(new Threading(mainLinkedList2, sema, processControlBlock)); // Creates a new thread which will run the task for process
+					Thread thread = new Thread(new Threading(mainLinkedList2, sema, processManifest)); // Creates a new thread which will run the task for process
 					thread.start(); // Starts the thread
 					 
-					if ((processControlBlock.getTask() != 4) || (processControlBlock.getTask() != 5)) { // If the task is Adding, Removing or Sorting, multiple processes can be executed
+					if ((processManifest.getTask() != 4) || (processManifest.getTask() != 5)) { // If the task is Adding, Removing or Sorting, multiple processes can be executed
 						try {  								// without having to wait for another thread. If the task is Retrieve or Calculate, the read must run to completion before it can execute another thread
 							thread.join();					// thread.join() waits for thread to die
 						} catch (InterruptedException e) {
@@ -112,8 +112,8 @@ public class Driver {
 						}						
 					}
 					
-					actions.add(processControlBlock); // Adds that pcb to the list of thread, which will show all the processes when the tasks are executed
-					mainLinkedList3.insertByArrivalTime(processControlBlock);
+					actions.add(processManifest); // Adds that pcb to the list of thread, which will show all the processes when the tasks are executed
+					mainLinkedList3.insertByArrivalTime(processManifest);
 				}
 				
 				System.out.println("REMAINING SHARED INTEGER: "+sharedDictionary.get("Shared List Value").intValue()+"\n");
@@ -121,12 +121,12 @@ public class Driver {
 			
 			mainLinkedList2.destroy();
 			
-			mainLinkedList1.preEmptivePriority(sharedDictionary, new ProcessControlBlock(), 1, mainLinkedList1.getheadNode().getat(), mainLinkedList1.getbt()); // Schedules the tasks in RAM to free all memory allocations and gain the original total space of 200
+			mainLinkedList1.preEmptivePriority(sharedDictionary, new processManifest(), 1, mainLinkedList1.getheadNode().getat(), mainLinkedList1.getbt()); // Schedules the tasks in RAM to free all memory allocations and gain the original total space of 200
 			System.out.println("TOTAL FREE SHARED INTEGER: "+sharedDictionary.get("Shared List Value").intValue()+"\n");
 			mainLinkedList1.destroy(); // Destroys that list
 			
 			System.out.println("\nActions To Be Performed On List\n");
-			for(ProcessControlBlock processCB: actions) { // Displays all the processses
+			for(processManifest processCB: actions) { // Displays all the processses
 				System.out.println("ID: "+processCB.getpid()+"\tArrivalTime: "+processCB.getat()+"\tBurstTime: "+processCB.getbt()+"\tTask: "+
 						descriptiveDescription(processCB.getTask())+"\tPriority: "+processCB.getPriority());
 			}
