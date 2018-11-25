@@ -2,7 +2,7 @@ package main;
 
 import java.util.Random;
 
-public class ProcessControlBlock { // The Process Control Block used to store the data for each process, id, burst time, arrival time etc
+public class processManifest { // The Process Control Block used to store the data for each process, id, burst time, arrival time etc
     private int size, startTime, task, attempts, sleepTime, priority; // Variables used in the pcb
     private long createTime, endTime = 0;
     private String pid;
@@ -153,14 +153,14 @@ public class ProcessControlBlock { // The Process Control Block used to store th
     	}
     }
     
-    public ProcessControlBlock() { // Default Constructor
+    public processManifest() { // Default Constructor
     	this.size = this.startTime = this.task = this.attempts =  this.sleepTime = this.priority = 0;
         this.createTime = this.endTime = 0;
         this.pid = "";
         this.bt = this.at = this.wt = this.aroundTime = 0;
     }
     
-    public ProcessControlBlock(String pid, int at, int bt) { // Primary Constructor
+    public processManifest(String pid, int at, int bt) { // Primary Constructor
     	this.rpriority();
     	this.sst();
     	this.createTime = System.currentTimeMillis();

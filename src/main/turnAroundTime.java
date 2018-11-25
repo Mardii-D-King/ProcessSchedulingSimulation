@@ -3,17 +3,17 @@ package main;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class TurnAroundTimeLinkedList { // Used to calculate the waiting and turn around time for the processes
-	TurnAroundTimeLinkedListNode headNode, tailNode;
+public class turnAroundTime { // Used to calculate the waiting and turn around time for the processes
+	turnAroundTimeNode headNode, tailNode;
 	int count;
 	
-	public TurnAroundTimeLinkedList() { // Default Constructor
+	public turnAroundTime() { // Default Constructor
 		this.count = 0;
 		this.headNode = this.tailNode = null;
 	}
 
 	public void display() { // Displays and append the waiting and turn around time to the file
-		TurnAroundTimeLinkedListNode node = this.headNode;
+		turnAroundTimeNode node = this.headNode;
 		double waitingTime = 0.0, turnAroundTime = 0.0;
 		
 		while(node != null) {
@@ -56,7 +56,7 @@ public class TurnAroundTimeLinkedList { // Used to calculate the waiting and tur
 	public void destroy() {
 		if(!isEmpty()) {
 			while(!isEmpty()) {
-				TurnAroundTimeLinkedListNode node = this.headNode;
+				turnAroundTimeNode node = this.headNode;
 				this.headNode = this.headNode.getNextNode();
 				node = null;
 				this.count--;
@@ -64,8 +64,8 @@ public class TurnAroundTimeLinkedList { // Used to calculate the waiting and tur
 		}
 	}
 	
-	public void insertAtBack(ProcessControlBlock data) { // Used to insert a new node at the back of the list
-		TurnAroundTimeLinkedListNode node = new TurnAroundTimeLinkedListNode(data, null);
+	public void insertAtBack(processManifest data) { // Used to insert a new node at the back of the list
+		turnAroundTimeNode node = new turnAroundTimeNode(data, null);
 
 		if(node != null) {
 			if (isEmpty()) {

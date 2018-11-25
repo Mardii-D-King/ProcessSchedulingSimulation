@@ -1,33 +1,33 @@
 package main;
 
-public class TurnAroundTimeLinkedListNode { // The node for the turn around linkedlist
-    private ProcessControlBlock dataPortion; // The data portion
-    private TurnAroundTimeLinkedListNode nextNode; // Reference to the next node
+public class turnAroundTimeNode { // The node for the turn around linkedlist
+    private processManifest dataPortion; // The data portion
+    private turnAroundTimeNode nextNode; // Reference to the next node
     
     // Mutators
-	 public void setData(ProcessControlBlock dataPortion) {
+	 public void setData(processManifest dataPortion) {
 		 this.dataPortion = dataPortion;
 	 }
 
-	 public void setNextNode(TurnAroundTimeLinkedListNode nextNode) {
+	 public void setNextNode(turnAroundTimeNode nextNode) {
 		 this.nextNode = nextNode;
 	 }
 
 	 // Accessors
-	 public final ProcessControlBlock getData() {
+	 public final processManifest getData() {
 		 return this.dataPortion;
 	 }
 	 
-	 public TurnAroundTimeLinkedListNode getNextNode() {
+	 public turnAroundTimeNode getNextNode() {
 		 return this.nextNode;
 	 }
 
-	 public TurnAroundTimeLinkedListNode() { // Default Constructor
-		 dataPortion = new ProcessControlBlock(); 
+	 public turnAroundTimeNode() { // Default Constructor
+		 dataPortion = new processManifest(); 
 		 this.nextNode = null;
 	 }
 
-	 public TurnAroundTimeLinkedListNode(ProcessControlBlock dataPortion, TurnAroundTimeLinkedListNode nextNode) { // Primary Constructor
+	 public turnAroundTimeNode(processManifest dataPortion, turnAroundTimeNode nextNode) { // Primary Constructor
 		 this.dataPortion = dataPortion;
 		 this.nextNode = nextNode;
 	 }

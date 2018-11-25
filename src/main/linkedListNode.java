@@ -1,32 +1,32 @@
 package main;
 
-public class MainLinkedListNode {
-	public void setData(ProcessControlBlock data) {
+public class linkedListNode {
+	public void setData(processManifest data) {
         this.data = data;
     }
     
-    public ProcessControlBlock getData() {
+    public processManifest getData() {
         return this.data;
     }
     
-    public void setNextNode(MainLinkedListNode nextNode) {
+    public void setNextNode(linkedListNode nextNode) {
         this.nextNode = nextNode;
     }
     
-    public MainLinkedListNode getNextNode() {
+    public linkedListNode getNextNode() {
         return this.nextNode;
     }
     
-    public MainLinkedListNode() {
-    	data = new ProcessControlBlock();
+    public linkedListNode() {
+    	data = new processManifest();
         this.nextNode = null;
     }
     
-    public MainLinkedListNode(ProcessControlBlock data, MainLinkedListNode nextNode) {
+    public linkedListNode(processManifest data, linkedListNode nextNode) {
         this.data = data;
         this.nextNode = nextNode;
     }
     
-    private ProcessControlBlock data;
-    private MainLinkedListNode nextNode;
+    private processManifest data;
+    private linkedListNode nextNode;
 }

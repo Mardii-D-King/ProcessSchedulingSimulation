@@ -1,9 +1,9 @@
 package main;
 
-public class Semaphore { // Used to control access to the linked list when another thread is using it
+public class linkedListAccessControl { // Used to control access to the linked list when another thread is using it
 	private boolean signal = false;
 	
-	public Semaphore(boolean signal) {
+	public linkedListAccessControl(boolean signal) {
 		this.signal = signal;
 	}
 
